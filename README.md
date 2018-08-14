@@ -1,11 +1,11 @@
-# sf4-clean-architecture-sample
+# sf4-clean-architecture-example
 
 Clean architecture sample by Symfony4.
 
 ## Setup
 
 ```
-$ git clone https://github.com/polidog/sf4-clean-architecture-sample
+$ git clone https://github.com/polidog/sf4-clean-architecture-example.git
 $ cd sf4-clean-architecture-sample
 $ composer install
 $ bin/console doctrine:database:create

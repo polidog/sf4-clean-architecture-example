@@ -3,58 +3,35 @@
 namespace App\Presenter;
 
 
-use Polidog\TransferMoney\Data\AccountDataInterface;
+use Polidog\TransferMoney\DataAccess\AccountDataInterface;
 use Polidog\TransferMoney\Presenter\TransferMoneyPresenterInterface;
+use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
 
 class TransferMoneyPresenter implements TransferMoneyPresenterInterface
 {
     /**
-     * @var AccountDataInterface
+     * @var TransferMoneyOutput
      */
-    private $source;
+    private $output;
 
-    /**
-     * @var AccountDataInterface
-     */
-    private $destination;
-
-    /**
-     * @var integer
-     */
-    private $money;
-
-    public function setSourceData(AccountDataInterface $data): void
+    public function setOutputData(TransferMoneyOutput $output): void
     {
-        $this->source = $data;
+        $this->output = $output;
     }
-
-    public function setDestinationData(AccountDataInterface $data): void
-    {
-        $this->destination = $data;
-    }
-
-    public function setMoney(int $money): void
-    {
-        $this->money = $money;
-    }
-
 
     public function getSource()
     {
-        return $this->accountDataToArray($this->source);
+        return $this->accountDataToArray($this->output->getSource());
     }
 
     public function getDestination()
     {
-        return $this->accountDataToArray($this->destination);
+        return $this->accountDataToArray($this->output->getDestination());
     }
 
-    /**
-     * @return int
-     */
     public function getMoney(): int
     {
-        return $this->money;
+        return $this->output->getMoney();
     }
 
     private function accountDataToArray(AccountDataInterface $data)

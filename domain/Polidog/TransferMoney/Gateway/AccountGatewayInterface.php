@@ -4,7 +4,7 @@
 namespace Polidog\TransferMoney\Gateway;
 
 
-use Polidog\TransferMoney\Data\AccountDataInterface;
+use Polidog\TransferMoney\DataAccess\AccountDataInterface;
 
 interface AccountGatewayInterface
 {

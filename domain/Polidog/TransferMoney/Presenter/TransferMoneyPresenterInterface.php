@@ -3,13 +3,10 @@
 namespace Polidog\TransferMoney\Presenter;
 
 
-use Polidog\TransferMoney\Data\AccountDataInterface;
+use Polidog\TransferMoney\DataAccess\AccountDataInterface;
+use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
 
 interface TransferMoneyPresenterInterface
 {
-    public function setSourceData(AccountDataInterface $data);
-
-    public function setDestinationData(AccountDataInterface $data);
-
-    public function setMoney(int $money);
+    public function setOutputData(TransferMoneyOutput $output);
 }

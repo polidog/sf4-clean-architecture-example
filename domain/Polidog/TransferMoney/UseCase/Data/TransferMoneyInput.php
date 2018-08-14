@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoney\UseCase;
+namespace Polidog\TransferMoney\UseCase\Data;
 
 
 class TransferMoneyInput

@@ -3,7 +3,7 @@
 namespace Polidog\TransferMoney\Entity;
 
 
-use Polidog\TransferMoney\Data\AccountDataInterface;
+use Polidog\TransferMoney\DataAccess\AccountDataInterface;
 
 class Account
 {

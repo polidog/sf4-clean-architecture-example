@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Polidog\TransferMoney\Data\AccountDataInterface;
+use Polidog\TransferMoney\DataAccess\AccountDataInterface;
 
 /**
  * @ORM\Entity()

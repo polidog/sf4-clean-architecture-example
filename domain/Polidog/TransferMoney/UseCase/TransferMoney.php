@@ -6,6 +6,8 @@ namespace Polidog\TransferMoney\UseCase;
 use Polidog\TransferMoney\Entity\Account;
 use Polidog\TransferMoney\Gateway\AccountGatewayInterface;
 use Polidog\TransferMoney\Presenter\TransferMoneyPresenterInterface;
+use Polidog\TransferMoney\UseCase\Data\TransferMoneyInput;
+use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
 
 class TransferMoney implements TransferMoneyInterface
 {
@@ -38,9 +40,7 @@ class TransferMoney implements TransferMoneyInterface
         $this->gateway->save($sourceData);
         $this->gateway->save($destinationData);
 
-        $presenter->setSourceData($sourceData);
-        $presenter->setDestinationData($destinationData);
-        $presenter->setMoney($input->getMoney());
+        $presenter->setOutputData(new TransferMoneyOutput($sourceData, $destinationData, $input->getMoney()));
     }
 
 }

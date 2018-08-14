@@ -6,7 +6,7 @@ namespace App\Repository;
 use App\Entity\Account;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Polidog\TransferMoney\Data\AccountDataInterface;
+use Polidog\TransferMoney\DataAccess\AccountDataInterface;
 use Polidog\TransferMoney\Gateway\AccountGatewayInterface;
 
 class AccountRepository extends ServiceEntityRepository implements AccountGatewayInterface

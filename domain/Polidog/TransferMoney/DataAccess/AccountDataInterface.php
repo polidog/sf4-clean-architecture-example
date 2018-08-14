@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoney\Data;
+namespace Polidog\TransferMoney\DataAccess;
 
 
 interface AccountDataInterface

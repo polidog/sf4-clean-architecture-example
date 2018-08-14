@@ -4,6 +4,7 @@ namespace Polidog\TransferMoney\UseCase;
 
 
 use Polidog\TransferMoney\Presenter\TransferMoneyPresenterInterface;
+use Polidog\TransferMoney\UseCase\Data\TransferMoneyInput;
 
 interface TransferMoneyInterface
 {

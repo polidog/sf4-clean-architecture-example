@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2>送金手続き</h2>
+        <form method="post" action="{{ path('app_site_transfermoney_run') }}">
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary">送金する</button>
+        </form>
+    </div>
+{% endblock %}

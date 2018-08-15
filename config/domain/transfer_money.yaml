@@ -11,7 +11,7 @@ services:
   # this creates a service per class whose id is the fully-qualified class name
   Polidog\TransferMoneyManagement\:
     resource: '../../domain/Polidog/TransferMoneyManagement/*'
-    exclude: '../../domain/Polidog/TransferMoneyManagement/{Data,DataAccess,Entity,Presenter, UseCase/Data}'
+    exclude: '../../domain/Polidog/TransferMoneyManagement/{Data,DataAccess,Entity,Presenter, UseCase/*/Input.php, UseCase/*/Output.php}'
 
 
   Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface: '@App\Repository\AccountRepository'

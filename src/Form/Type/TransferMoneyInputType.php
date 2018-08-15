@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 
-use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyInput;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Input;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -31,7 +31,7 @@ class TransferMoneyInputType extends AbstractType
             ])
         ;
 
-        $builder->addModelTransformer(new CallbackTransformer(function(TransferMoneyInput $data = null){
+        $builder->addModelTransformer(new CallbackTransformer(function(Input $data = null){
             if ($data === null) {
                 return [];
             }
@@ -42,7 +42,7 @@ class TransferMoneyInputType extends AbstractType
                 self::MONEY => $data->getMoney(),
             ];
         }, function (array $data){
-            return new TransferMoneyInput($data[self::SOURCE_NUMBER], $data[self::DESTINATION_NUMBER], $data[self::MONEY]);
+            return new Input($data[self::SOURCE_NUMBER], $data[self::DESTINATION_NUMBER], $data[self::MONEY]);
         }));
 
     }

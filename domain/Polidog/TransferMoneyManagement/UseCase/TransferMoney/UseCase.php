@@ -1,16 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\UseCase;
+namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
 use Polidog\TransferMoneyManagement\Entity\Account;
 use Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface;
 use Polidog\TransferMoneyManagement\Gateway\HistoryGatewayInterface;
-use Polidog\TransferMoneyManagement\Presenter\TransferMoneyPresenterInterface;
-use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyInput;
-use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyOutput;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Input;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Output;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
 
-class TransferMoney implements TransferMoneyInterface
+class UseCase implements TransferMoney
 {
     /**
      * @var AccountGatewayInterface
@@ -36,7 +37,7 @@ class TransferMoney implements TransferMoneyInterface
     /**
      * @throws \Exception
      */
-    public function execute(TransferMoneyInput $input, TransferMoneyPresenterInterface $presenter): void
+    public function execute(Input $input, Presenter $presenter): void
     {
         $sourceData = $this->accountGateway->findAccount($input->getSourceNumber());
         $destinationData = $this->accountGateway->findAccount($input->getDestinationNumber());
@@ -51,7 +52,7 @@ class TransferMoney implements TransferMoneyInterface
         $this->accountGateway->update($destinationData);
         $this->historyGateway->create($sourceData, $destinationData, new \DateTimeImmutable());
 
-        $presenter->setOutputData(new TransferMoneyOutput($sourceData, $destinationData, $input->getMoney()));
+        $presenter->setOutputData(new Output($sourceData, $destinationData, $input->getMoney()));
     }
 
 }

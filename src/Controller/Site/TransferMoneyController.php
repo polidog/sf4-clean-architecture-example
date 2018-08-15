@@ -5,7 +5,7 @@ namespace App\Controller\Site;
 
 use App\Form\Type\TransferMoneyInputType;
 use App\Presenter\TransferMoneyPresenter;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoneyInterface;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,16 +23,16 @@ class TransferMoneyController
     private $formFactory;
 
     /**
-     * @var TransferMoneyInterface
+     * @var TransferMoney
      */
     private $useCase;
 
     /**
      * TransferMoneyController constructor.
      * @param FormFactoryInterface $formFactory
-     * @param TransferMoneyInterface $useCase
+     * @param TransferMoney $useCase
      */
-    public function __construct(FormFactoryInterface $formFactory, TransferMoneyInterface $useCase)
+    public function __construct(FormFactoryInterface $formFactory, TransferMoney $useCase)
     {
         $this->formFactory = $formFactory;
         $this->useCase = $useCase;

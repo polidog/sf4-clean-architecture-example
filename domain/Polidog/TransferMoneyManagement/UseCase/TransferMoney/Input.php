@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\UseCase\Data;
+namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
-class TransferMoneyInput
+class Input
 {
     /**
      * @var string

@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\UseCase\Data;
+namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
 use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
 
-class TransferMoneyOutput
+class Output
 {
     /**
      * @var AccountDataInterface

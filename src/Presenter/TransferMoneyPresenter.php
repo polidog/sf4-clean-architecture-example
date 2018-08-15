@@ -4,17 +4,17 @@ namespace App\Presenter;
 
 
 use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
-use Polidog\TransferMoneyManagement\Presenter\TransferMoneyPresenterInterface;
-use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyOutput;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Output;
 
-class TransferMoneyPresenter implements TransferMoneyPresenterInterface
+class TransferMoneyPresenter implements Presenter
 {
     /**
-     * @var TransferMoneyOutput
+     * @var Output
      */
     private $output;
 
-    public function setOutputData(TransferMoneyOutput $output): void
+    public function setOutputData(Output $output): void
     {
         $this->output = $output;
     }

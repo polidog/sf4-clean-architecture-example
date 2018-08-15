@@ -22,10 +22,10 @@ class UseCase implements CreateAccount
     }
 
 
-    public function execute(string $name, string $account, Presenter $presenter): void
+    public function execute(string $name, Presenter $presenter): void
     {
         $number = bin2hex(\random_bytes(16));
-        $account = $this->gateway->create($number, $name, $account);
+        $account = $this->gateway->create($number, $name, 0);
         $presenter->setAccount($account);
     }
 

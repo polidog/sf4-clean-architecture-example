@@ -5,5 +5,5 @@ namespace Polidog\TransferMoneyManagement\UseCase\CreateAccount;
 
 interface CreateAccount
 {
-    public function execute(string $name, string $account, Presenter $presenter);
+    public function execute(string $name, Presenter $presenter);
 }

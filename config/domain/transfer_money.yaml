@@ -15,3 +15,4 @@ services:
 
 
   Polidog\TransferMoney\Gateway\AccountGatewayInterface: '@App\Repository\AccountRepository'
+  Polidog\TransferMoney\Gateway\HistoryGatewayInterface: '@App\Repository\HistoryRepository'

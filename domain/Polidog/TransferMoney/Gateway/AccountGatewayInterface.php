@@ -12,5 +12,5 @@ interface AccountGatewayInterface
 
     public function create(AccountDataInterface $data);
 
-    public function save(AccountDataInterface $data);
+    public function update(AccountDataInterface $data);
 }

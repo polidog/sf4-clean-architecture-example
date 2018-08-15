@@ -5,6 +5,7 @@ namespace Polidog\TransferMoney\UseCase;
 
 use Polidog\TransferMoney\Entity\Account;
 use Polidog\TransferMoney\Gateway\AccountGatewayInterface;
+use Polidog\TransferMoney\Gateway\HistoryGatewayInterface;
 use Polidog\TransferMoney\Presenter\TransferMoneyPresenterInterface;
 use Polidog\TransferMoney\UseCase\Data\TransferMoneyInput;
 use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
@@ -14,31 +15,41 @@ class TransferMoney implements TransferMoneyInterface
     /**
      * @var AccountGatewayInterface
      */
-    private $gateway;
+    private $accountGateway;
+
+    /**
+     * @var HistoryGatewayInterface
+     */
+    private $historyGateway;
 
     /**
      * TransferMoney constructor.
-     * @param AccountGatewayInterface $gateway
+     * @param AccountGatewayInterface $accountGateway
+     * @param HistoryGatewayInterface $historyGateway
      */
-    public function __construct(AccountGatewayInterface $gateway)
+    public function __construct(AccountGatewayInterface $accountGateway, HistoryGatewayInterface $historyGateway)
     {
-        $this->gateway = $gateway;
+        $this->accountGateway = $accountGateway;
+        $this->historyGateway = $historyGateway;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function execute(TransferMoneyInput $input, TransferMoneyPresenterInterface $presenter): void
     {
-        // TODO: transactionをどう表現するか
-
-        $sourceData = $this->gateway->findAccount($input->getSourceNumber());
-        $destinationData = $this->gateway->findAccount($input->getDestinationNumber());
+        $sourceData = $this->accountGateway->findAccount($input->getSourceNumber());
+        $destinationData = $this->accountGateway->findAccount($input->getDestinationNumber());
 
         $source = new Account($sourceData);
         $destination = new Account($destinationData);
 
         $destination->transfer($source, $input->getMoney());
 
-        $this->gateway->save($sourceData);
-        $this->gateway->save($destinationData);
+        // TODO: transaction
+        $this->accountGateway->update($sourceData);
+        $this->accountGateway->update($destinationData);
+        $this->historyGateway->create($sourceData, $destinationData, new \DateTimeImmutable());
 
         $presenter->setOutputData(new TransferMoneyOutput($sourceData, $destinationData, $input->getMoney()));
     }

@@ -17,10 +17,13 @@ class Account
         $this->data = $data;
     }
 
-    public function transfer(self $account, int $money) : void
+    /**
+     * @throws \Exception
+     */
+    public function transfer(self $source, int $money) : void
     {
         $this->data->withdraw($money);
-        $account->deposit($money);
+        $source->deposit($money);
     }
 
     public function deposit(int $money) : void

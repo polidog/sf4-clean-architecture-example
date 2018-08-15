@@ -2,8 +2,6 @@
 
 namespace Polidog\TransferMoney\Presenter;
 
-
-use Polidog\TransferMoney\DataAccess\AccountDataInterface;
 use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
 
 interface TransferMoneyPresenterInterface

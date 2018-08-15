@@ -28,7 +28,7 @@ class AccountRepository extends ServiceEntityRepository implements AccountGatewa
     }
 
 
-    public function save(AccountDataInterface $data): void
+    public function update(AccountDataInterface $data): void
     {
         $this->_em->flush($data);
     }

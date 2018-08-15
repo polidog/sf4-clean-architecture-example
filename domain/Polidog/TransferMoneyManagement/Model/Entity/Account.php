@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\Domain\Entity;
+namespace Polidog\TransferMoneyManagement\Model\Entity;
 
 
 use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;

@@ -25,12 +25,6 @@ class Output
      */
     private $money;
 
-    /**
-     * TransferMoneyOutput constructor.
-     * @param array $source
-     * @param array $destination
-     * @param int $money
-     */
     public function __construct(AccountDataInterface $source, AccountDataInterface $destination, int $money)
     {
         $this->source = $source;
@@ -38,25 +32,16 @@ class Output
         $this->money = $money;
     }
 
-    /**
-     * @return AccountDataInterface
-     */
     public function getSource(): AccountDataInterface
     {
         return $this->source;
     }
 
-    /**
-     * @return AccountDataInterface
-     */
     public function getDestination(): AccountDataInterface
     {
         return $this->destination;
     }
 
-    /**
-     * @return int
-     */
     public function getMoney(): int
     {
         return $this->money;

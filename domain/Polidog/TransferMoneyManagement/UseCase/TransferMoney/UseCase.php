@@ -12,7 +12,7 @@ use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Output;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
 
 /**
- * Use Case Interactor
+ * UseCase Interactor
  */
 class UseCase implements TransferMoney
 {
@@ -26,11 +26,6 @@ class UseCase implements TransferMoney
      */
     private $historyGateway;
 
-    /**
-     * TransferMoney constructor.
-     * @param AccountGatewayInterface $accountGateway
-     * @param HistoryGatewayInterface $historyGateway
-     */
     public function __construct(AccountGatewayInterface $accountGateway, HistoryGatewayInterface $historyGateway)
     {
         $this->accountGateway = $accountGateway;

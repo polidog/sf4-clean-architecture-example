@@ -12,10 +12,6 @@ class UseCase implements GetAccount
      */
     private $gateway;
 
-    /**
-     * UseCase constructor.
-     * @param AccountGatewayInterface $gateway
-     */
     public function __construct(AccountGatewayInterface $gateway)
     {
         $this->gateway = $gateway;

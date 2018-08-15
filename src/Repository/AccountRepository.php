@@ -21,6 +21,15 @@ class AccountRepository extends ServiceEntityRepository implements AccountGatewa
         return $this->findOneBy(['number' => $number]);
     }
 
+    public function create(string $number, string $name, int $money) : AccountDataInterface
+    {
+        $data = new Account($name, $number, $money);
+        $this->_em->persist($data);
+        $this->_em->flush($data);
+        return $data;
+    }
+
+
     public function update(AccountDataInterface $data): void
     {
         $this->_em->flush($data);

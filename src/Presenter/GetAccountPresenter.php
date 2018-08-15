@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Presenter;
 
@@ -10,7 +10,7 @@ class GetAccountPresenter implements Presenter
 {
     private $data;
 
-    public function setAccount(AccountDataInterface $accountData)
+    public function setAccount(AccountDataInterface $accountData): void
     {
         $this->data = [
             'name' => $accountData->getName(),

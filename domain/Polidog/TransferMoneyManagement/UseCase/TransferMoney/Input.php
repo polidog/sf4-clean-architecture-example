@@ -2,7 +2,9 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
-
+/**
+ * Input Data
+ */
 class Input
 {
     /**

@@ -2,6 +2,9 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
+/**
+ * Output Boundary
+ */
 interface Presenter
 {
     public function setOutputData(Output $output);

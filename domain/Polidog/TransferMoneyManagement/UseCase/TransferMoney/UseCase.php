@@ -11,6 +11,9 @@ use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Input;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Output;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
 
+/**
+ * Use Case Interactor
+ */
 class UseCase implements TransferMoney
 {
     /**

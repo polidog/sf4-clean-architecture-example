@@ -5,6 +5,9 @@ namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
 
+/**
+ * Output Data
+ */
 class Output
 {
     /**

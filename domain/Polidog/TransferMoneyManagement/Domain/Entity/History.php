@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\Entity;
+namespace Polidog\TransferMoneyManagement\Domain\Entity;
 
 
 use Polidog\TransferMoneyManagement\DataAccess\HistoryDataInterface;

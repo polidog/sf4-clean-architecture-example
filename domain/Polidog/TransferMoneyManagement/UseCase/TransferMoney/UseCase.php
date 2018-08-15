@@ -3,7 +3,7 @@
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
-use Polidog\TransferMoneyManagement\Entity\Account;
+use Polidog\TransferMoneyManagement\Domain\Entity\Account;
 use Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface;
 use Polidog\TransferMoneyManagement\Gateway\HistoryGatewayInterface;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;

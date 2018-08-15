@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoney\UseCase;
+namespace Polidog\TransferMoneyManagement\UseCase;
 
 
-use Polidog\TransferMoney\Entity\Account;
-use Polidog\TransferMoney\Gateway\AccountGatewayInterface;
-use Polidog\TransferMoney\Gateway\HistoryGatewayInterface;
-use Polidog\TransferMoney\Presenter\TransferMoneyPresenterInterface;
-use Polidog\TransferMoney\UseCase\Data\TransferMoneyInput;
-use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
+use Polidog\TransferMoneyManagement\Entity\Account;
+use Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface;
+use Polidog\TransferMoneyManagement\Gateway\HistoryGatewayInterface;
+use Polidog\TransferMoneyManagement\Presenter\TransferMoneyPresenterInterface;
+use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyInput;
+use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyOutput;
 
 class TransferMoney implements TransferMoneyInterface
 {

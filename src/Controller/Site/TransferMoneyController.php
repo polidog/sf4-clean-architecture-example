@@ -5,7 +5,7 @@ namespace App\Controller\Site;
 
 use App\Form\Type\TransferMoneyInputType;
 use App\Presenter\TransferMoneyPresenter;
-use Polidog\TransferMoney\UseCase\TransferMoneyInterface;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoneyInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;

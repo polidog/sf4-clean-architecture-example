@@ -42,7 +42,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Polidog\\TransferMoney\\": "domain/Polidog/TransferMoney"
+            "Polidog\\TransferMoneyManagement\\": "domain/Polidog/TransferMoneyManagement"
         }
     },
     "autoload-dev": {

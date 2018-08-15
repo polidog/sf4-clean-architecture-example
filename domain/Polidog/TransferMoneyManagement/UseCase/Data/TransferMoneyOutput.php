@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoney\UseCase\Data;
+namespace Polidog\TransferMoneyManagement\UseCase\Data;
 
 
-use Polidog\TransferMoney\DataAccess\AccountDataInterface;
+use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
 
 class TransferMoneyOutput
 {

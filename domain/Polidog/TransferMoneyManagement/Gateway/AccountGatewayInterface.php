@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
 
-namespace Polidog\TransferMoney\Gateway;
+namespace Polidog\TransferMoneyManagement\Gateway;
 
 
-use Polidog\TransferMoney\DataAccess\AccountDataInterface;
+use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
 
 interface AccountGatewayInterface
 {

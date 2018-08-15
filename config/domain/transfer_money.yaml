@@ -9,10 +9,10 @@ services:
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
-  Polidog\TransferMoney\:
-    resource: '../../domain/Polidog/TransferMoney/*'
-    exclude: '../../domain/Polidog/TransferMoney/{Data,DataAccess,Entity,Presenter, UseCase/Data}'
+  Polidog\TransferMoneyManagement\:
+    resource: '../../domain/Polidog/TransferMoneyManagement/*'
+    exclude: '../../domain/Polidog/TransferMoneyManagement/{Data,DataAccess,Entity,Presenter, UseCase/Data}'
 
 
-  Polidog\TransferMoney\Gateway\AccountGatewayInterface: '@App\Repository\AccountRepository'
-  Polidog\TransferMoney\Gateway\HistoryGatewayInterface: '@App\Repository\HistoryRepository'
+  Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface: '@App\Repository\AccountRepository'
+  Polidog\TransferMoneyManagement\Gateway\HistoryGatewayInterface: '@App\Repository\HistoryRepository'

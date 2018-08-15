@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoney\Presenter;
+namespace Polidog\TransferMoneyManagement\Presenter;
 
-use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
+use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyOutput;
 
 interface TransferMoneyPresenterInterface
 {

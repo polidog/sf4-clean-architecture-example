@@ -6,9 +6,9 @@ namespace App\Repository;
 use App\Entity\History;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Polidog\TransferMoney\DataAccess\AccountDataInterface;
-use Polidog\TransferMoney\DataAccess\HistoryDataInterface;
-use Polidog\TransferMoney\Gateway\HistoryGatewayInterface;
+use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
+use Polidog\TransferMoneyManagement\DataAccess\HistoryDataInterface;
+use Polidog\TransferMoneyManagement\Gateway\HistoryGatewayInterface;
 
 class HistoryRepository extends ServiceEntityRepository implements HistoryGatewayInterface
 {

@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 
-use Polidog\TransferMoney\UseCase\Data\TransferMoneyInput;
+use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyInput;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;

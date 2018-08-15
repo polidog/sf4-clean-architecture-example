@@ -3,9 +3,9 @@
 namespace App\Presenter;
 
 
-use Polidog\TransferMoney\DataAccess\AccountDataInterface;
-use Polidog\TransferMoney\Presenter\TransferMoneyPresenterInterface;
-use Polidog\TransferMoney\UseCase\Data\TransferMoneyOutput;
+use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
+use Polidog\TransferMoneyManagement\Presenter\TransferMoneyPresenterInterface;
+use Polidog\TransferMoneyManagement\UseCase\Data\TransferMoneyOutput;
 
 class TransferMoneyPresenter implements TransferMoneyPresenterInterface
 {

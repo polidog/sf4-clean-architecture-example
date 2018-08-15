@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Polidog\TransferMoney\DataAccess\AccountDataInterface;
-use Polidog\TransferMoney\DataAccess\HistoryDataInterface;
+use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
+use Polidog\TransferMoneyManagement\DataAccess\HistoryDataInterface;
 
 /**
  * @ORM\Entity()

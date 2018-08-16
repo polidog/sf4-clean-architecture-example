@@ -3,10 +3,7 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\CreateAccount;
 
-
-use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
-
 interface Presenter
 {
-    public function setAccount(AccountDataInterface $accountData);
+    public function setAccount(array $accountData);
 }

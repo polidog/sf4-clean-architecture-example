@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
 
 /**
  * @ORM\Entity()
  * @ORM\Table()
  */
-class Account implements AccountDataInterface
+class Account
 {
     /**
      * @var integer
@@ -23,16 +22,17 @@ class Account implements AccountDataInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
-    private $name;
+    private $number;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
-    private $number;
+    private $name;
+
 
     /**
      * @var integer
@@ -45,14 +45,13 @@ class Account implements AccountDataInterface
      * Account constructor.
      * @param string $name
      * @param string $number
-     * @param int $money
      */
-    public function __construct(string $name, string $number, int $money)
+    public function __construct(string $name, string $number)
     {
         $this->name = $name;
         $this->number = $number;
-        $this->money = $money;
     }
+
 
     /**
      * @return int
@@ -62,31 +61,47 @@ class Account implements AccountDataInterface
         return $this->id;
     }
 
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getMoney()
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumber(): string
+    {
+        return $this->number;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getMoney(): int
     {
         return $this->money;
     }
 
-    public function deposit(int $money): void
+    /**
+     * @param int $money
+     */
+    public function setMoney(int $money): void
     {
-        $this->money += $money;
+        $this->money = $money;
     }
 
-    public function withdraw(int $money): void
-    {
-        $this->money -= $money;
-        // TODO: Check money
-    }
 
 
 }

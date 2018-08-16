@@ -3,7 +3,6 @@
 namespace App\Presenter;
 
 
-use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Output;
 
@@ -19,28 +18,19 @@ class TransferMoneyPresenter implements Presenter
         $this->output = $output;
     }
 
-    public function getSource()
+    public function getSource() : array
     {
-        return $this->accountDataToArray($this->output->getSource());
+        return $this->output->getSource();
     }
 
-    public function getDestination()
+    public function getDestination() : array
     {
-        return $this->accountDataToArray($this->output->getDestination());
+        return $this->output->getDestination();
     }
 
     public function getMoney(): int
     {
         return $this->output->getMoney();
-    }
-
-    private function accountDataToArray(AccountDataInterface $data)
-    {
-        return [
-            'number' => $data->getNumber(),
-            'name' => $data->getName(),
-            'money' => $data->getMoney(),
-        ];
     }
 
 }

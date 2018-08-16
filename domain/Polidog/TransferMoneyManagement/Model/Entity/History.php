@@ -2,38 +2,58 @@
 
 namespace Polidog\TransferMoneyManagement\Model\Entity;
 
-
-use Polidog\TransferMoneyManagement\DataAccess\HistoryDataInterface;
-
 class History
 {
     /**
-     * @var HistoryDataInterface
+     * @var Account
      */
-    private $data;
+    private $source;
+
+    /**
+     * @var Account
+     */
+    private $destination;
+
+    /**
+     * @var \DateTimeImmutable
+     */
+    private $createdAt;
 
     /**
      * History constructor.
-     * @param HistoryDataInterface $data
+     * @param Account $source
+     * @param Account $destination
+     * @param \DateTimeImmutable $createdAt
      */
-    public function __construct(HistoryDataInterface $data)
+    public function __construct(Account $source, Account $destination, \DateTimeImmutable $createdAt)
     {
-        $this->data = $data;
+        $this->source = $source;
+        $this->destination = $destination;
+        $this->createdAt = $createdAt;
     }
 
-    public function getSource() : Account
+    /**
+     * @return Account
+     */
+    public function getSource(): Account
     {
-        return new Account($this->data->getSource());
+        return $this->source;
     }
 
-    public function getDestination() : Account
+    /**
+     * @return Account
+     */
+    public function getDestination(): Account
     {
-        return new Account($this->data->getSource());
+        return $this->destination;
     }
 
+    /**
+     * @return \DateTimeImmutable
+     */
     public function getCreatedAt(): \DateTimeImmutable
     {
-        return $this->data->getCreatedAt();
+        return $this->createdAt;
     }
 
 }

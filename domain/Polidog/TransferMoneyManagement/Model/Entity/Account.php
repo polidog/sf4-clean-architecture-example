@@ -2,33 +2,78 @@
 
 namespace Polidog\TransferMoneyManagement\Model\Entity;
 
-
-use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
-
 class Account
 {
     /**
-     * @var AccountDataInterface
+     * @var string
      */
-    private $data;
+    private $number;
 
-    public function __construct(AccountDataInterface $data)
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var integer
+     */
+    private $money;
+
+    /**
+     * Account constructor.
+     * @param string $number
+     * @param string $name
+     * @param int $money
+     */
+    public function __construct(string $number, string $name, int $money)
     {
-        $this->data = $data;
+        $this->number = $number;
+        $this->name = $name;
+        $this->money = $money;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumber(): string
+    {
+        return $this->number;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMoney(): int
+    {
+        return $this->money;
     }
 
     /**
      * @throws \Exception
      */
-    public function transfer(self $source, int $money) : void
+    public function transfer(self $source, int $money) : History
     {
-        $this->data->withdraw($money);
+        $this->withdraw($money);
         $source->deposit($money);
+        return new History($source, $this, new \DateTimeImmutable());
     }
 
     public function deposit(int $money) : void
     {
-        $this->data->deposit($money);
+        $this->money += $money;
     }
 
+    public function withdraw(int $money): void
+    {
+        $this->money -= $money;
+        // TODO: Check money
+    }
 }

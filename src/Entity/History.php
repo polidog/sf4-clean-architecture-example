@@ -4,14 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
-use Polidog\TransferMoneyManagement\DataAccess\HistoryDataInterface;
-
 /**
  * @ORM\Entity()
  * @ORM\Table()
  */
-class History implements HistoryDataInterface
+class History
 {
     /**
      * @var integer
@@ -25,14 +22,14 @@ class History implements HistoryDataInterface
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Account")
      *
-     * @var AccountDataInterface
+     * @var Account
      */
     private $source;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Account")
      *
-     * @var AccountDataInterface
+     * @var Account
      */
     private $destination;
 
@@ -45,11 +42,11 @@ class History implements HistoryDataInterface
 
     /**
      * History constructor.
-     * @param AccountDataInterface $source
-     * @param AccountDataInterface $destination
+     * @param Account $source
+     * @param Account $destination
      * @param \DateTimeImmutable $createdAt
      */
-    public function __construct(AccountDataInterface $source, AccountDataInterface $destination, \DateTimeImmutable $createdAt)
+    public function __construct(Account $source, Account $destination, \DateTimeImmutable $createdAt)
     {
         $this->source = $source;
         $this->destination = $destination;
@@ -64,12 +61,12 @@ class History implements HistoryDataInterface
         return $this->id;
     }
 
-    public function getSource(): AccountDataInterface
+    public function getSource(): Account
     {
         return $this->source;
     }
 
-    public function getDestination(): AccountDataInterface
+    public function getDestination(): Account
     {
         return $this->destination;
     }

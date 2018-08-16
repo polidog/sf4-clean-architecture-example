@@ -3,30 +3,27 @@
 namespace Polidog\TransferMoneyManagement\UseCase\CreateAccount;
 
 
+use App\Repository\AccountRepository;
 use Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface;
+use Polidog\TransferMoneyManagement\Model\EntityFactory\AccountFactory;
 
 class UseCase implements CreateAccount
 {
     /**
-     * @var AccountGatewayInterface
+     * @var AccountRepository
      */
-    private $gateway;
+    private $repository;
 
     /**
-     * UseCase constructor.
-     * @param AccountGatewayInterface $gateway
+     * @var AccountFactory
      */
-    public function __construct(AccountGatewayInterface $gateway)
-    {
-        $this->gateway = $gateway;
-    }
-
+    private $factory;
 
     public function execute(string $name, Presenter $presenter): void
     {
-        $number = bin2hex(\random_bytes(16));
-        $account = $this->gateway->create($number, $name, 0);
-        $presenter->setAccount($account);
+        $account = $this->factory->create($name);
+        $this->repository->create($account);
+        $presenter->setAccount((array)$account);
     }
 
 }

@@ -3,24 +3,32 @@
 namespace Polidog\TransferMoneyManagement\UseCase\GetAccount;
 
 
-use Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface;
+use App\Repository\AccountRepository;
 
 class UseCase implements GetAccount
 {
     /**
-     * @var AccountGatewayInterface
+     * @var AccountRepository
      */
-    private $gateway;
+    private $repository;
 
-    public function __construct(AccountGatewayInterface $gateway)
+    /**
+     * UseCase constructor.
+     * @param AccountRepository $repository
+     */
+    public function __construct(AccountRepository $repository)
     {
-        $this->gateway = $gateway;
+        $this->repository = $repository;
     }
 
     public function execute(string $number, Presenter $presenter): void
     {
-        $account = $this->gateway->findAccount($number);
-        $presenter->setAccount($account);
+        $account = $this->repository->findAccount($number);
+        $presenter->setAccount([
+            'number' => $account->getNumber(),
+            'name' => $account->getNumber(),
+            'money' => $account->getMoney(),
+        ]);
     }
 
 }

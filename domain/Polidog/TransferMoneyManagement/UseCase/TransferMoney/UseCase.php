@@ -3,13 +3,8 @@
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
-use Polidog\TransferMoneyManagement\Model\Entity\Account;
-use Polidog\TransferMoneyManagement\Gateway\AccountGatewayInterface;
-use Polidog\TransferMoneyManagement\Gateway\HistoryGatewayInterface;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Input;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Output;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
+use Polidog\TransferMoneyManagement\Model\Repository\AccountRepository;
+use Polidog\TransferMoneyManagement\Model\Repository\HistoryRepository;
 
 /**
  * UseCase Interactor
@@ -17,19 +12,24 @@ use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
 class UseCase implements TransferMoney
 {
     /**
-     * @var AccountGatewayInterface
+     * @var AccountRepository
      */
-    private $accountGateway;
+    private $accountRepository;
 
     /**
-     * @var HistoryGatewayInterface
+     * @var HistoryRepository
      */
-    private $historyGateway;
+    private $historyRepository;
 
-    public function __construct(AccountGatewayInterface $accountGateway, HistoryGatewayInterface $historyGateway)
+    /**
+     * UseCase constructor.
+     * @param AccountRepository $accountRepository
+     * @param HistoryRepository $historyRepository
+     */
+    public function __construct(AccountRepository $accountRepository, HistoryRepository $historyRepository)
     {
-        $this->accountGateway = $accountGateway;
-        $this->historyGateway = $historyGateway;
+        $this->accountRepository = $accountRepository;
+        $this->historyRepository = $historyRepository;
     }
 
     /**
@@ -37,20 +37,14 @@ class UseCase implements TransferMoney
      */
     public function execute(Input $input, Presenter $presenter): void
     {
-        $sourceData = $this->accountGateway->findAccount($input->getSourceNumber());
-        $destinationData = $this->accountGateway->findAccount($input->getDestinationNumber());
+        $source = $this->accountRepository->findAccount($input->getSourceNumber());
+        $destination = $this->accountRepository->findAccount($input->getDestinationNumber());
+        $history = $source->transfer($destination, $input->getMoney());
 
-        $source = new Account($sourceData);
-        $destination = new Account($destinationData);
-
-        $destination->transfer($source, $input->getMoney());
-
-        // TODO: transaction
-        $this->accountGateway->update($sourceData);
-        $this->accountGateway->update($destinationData);
-        $this->historyGateway->create($sourceData, $destinationData, new \DateTimeImmutable());
-
-        $presenter->setOutputData(new Output($sourceData, $destinationData, $input->getMoney()));
+        $this->accountRepository->update($source);
+        $this->accountRepository->update($destination);
+        $this->historyRepository->add($history);
+        $presenter->setOutputData(new Output($source, $destination, $input->getMoney()));
     }
 
 }

@@ -3,31 +3,37 @@
 namespace App\Repository;
 
 
+use App\Entity\Account;
 use App\Entity\History;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
-use Polidog\TransferMoneyManagement\DataAccess\HistoryDataInterface;
-use Polidog\TransferMoneyManagement\Gateway\HistoryGatewayInterface;
+use Polidog\TransferMoneyManagement\Model\Repository\HistoryRepository as Repository;
+use Polidog\TransferMoneyManagement\Model\Entity\History as Entity;
 
-class HistoryRepository extends ServiceEntityRepository implements HistoryGatewayInterface
+class HistoryRepository extends ServiceEntityRepository implements Repository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var AccountRepository
+     */
+    private $accountRepository;
+
+    public function __construct(ManagerRegistry $registry, AccountRepository $accountRepository)
     {
+        $this->accountRepository = $accountRepository;
         parent::__construct($registry, History::class);
     }
 
-    /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function create(AccountDataInterface $source, AccountDataInterface $destination, \DateTimeImmutable $createdAt): HistoryDataInterface
+    public function add(Entity $history): void
     {
-        $data = new History($source, $destination, $createdAt);
+        /** @var Account $source */
+        $source = $this->accountRepository->findOneBy(['number' => $history->getSource()->getNumber()]);
+
+        /** @var Account $destination */
+        $destination = $this->accountRepository->findOneBy(['number' => $history->getDestination()->getNumber()]);
+
+        $data = new History($source, $destination, $history->getCreatedAt());
         $this->_em->persist($data);
         $this->_em->flush($data);
-
-        return $data;
     }
 
 }

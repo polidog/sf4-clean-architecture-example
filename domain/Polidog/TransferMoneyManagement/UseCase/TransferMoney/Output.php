@@ -2,8 +2,7 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
-
-use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
+use Polidog\TransferMoneyManagement\Model\Entity\Account;
 
 /**
  * Output Data
@@ -11,12 +10,12 @@ use Polidog\TransferMoneyManagement\DataAccess\AccountDataInterface;
 class Output
 {
     /**
-     * @var AccountDataInterface
+     * @var Account
      */
     private $source;
 
     /**
-     * @var AccountDataInterface
+     * @var Account
      */
     private $destination;
 
@@ -25,26 +24,35 @@ class Output
      */
     private $money;
 
-    public function __construct(AccountDataInterface $source, AccountDataInterface $destination, int $money)
+    public function __construct(Account $source, Account $destination, int $money)
     {
         $this->source = $source;
         $this->destination = $destination;
         $this->money = $money;
     }
 
-    public function getSource(): AccountDataInterface
+    public function getSource(): array
     {
-        return $this->source;
+        return $this->exportAccount($this->source);
     }
 
-    public function getDestination(): AccountDataInterface
+    public function getDestination(): array
     {
-        return $this->destination;
+        return $this->exportAccount($this->destination);
     }
 
     public function getMoney(): int
     {
         return $this->money;
+    }
+
+    private function exportAccount(Account $account)
+    {
+        return [
+            'number' => $account->getNumber(),
+            'name' => $account->getName(),
+            'money' => $account->getMoney(),
+        ];
     }
 
 }

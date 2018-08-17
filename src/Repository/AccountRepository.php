@@ -6,7 +6,7 @@ namespace App\Repository;
 use App\Entity\Account;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Polidog\TransferMoneyManagement\Model\EntityFactory\AccountFactory;
+use Polidog\TransferMoneyManagement\Model\Factory\AccountFactory;
 use Polidog\TransferMoneyManagement\Model\Repository\AccountRepository as Repository;
 use Polidog\TransferMoneyManagement\Model\Entity\Account as Entity;
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\Model\EntityFactory;
+namespace Polidog\TransferMoneyManagement\Model\Factory;
 
 
 use Polidog\TransferMoneyManagement\Model\Entity\Account;

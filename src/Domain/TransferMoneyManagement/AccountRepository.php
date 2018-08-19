@@ -9,6 +9,7 @@ use App\Entity\Account;
 use Polidog\TransferMoneyManagement\Model\AccountFactory;
 use Polidog\TransferMoneyManagement\Model\AccountRepository as Repository;
 use Polidog\TransferMoneyManagement\Model\Account as EntityAccount;
+use Polidog\TransferMoneyManagement\Model\History;
 
 class AccountRepository implements Repository
 {
@@ -60,10 +61,8 @@ class AccountRepository implements Repository
         // TODO: Implement delete() method.
     }
 
-    public function transfer(EntityAccount $source, EntityAccount $destination, int $money): void
+    public function transferSave(EntityAccount $source, EntityAccount $destination, History $history): void
     {
-        $history = $source->transfer($destination, $money);
-
         // TODO transaction
         $sourceEntity = $this->accountEntityRepository->update($source->getNumber(), $source->getName(), $source->getMoney());
         $destinationEntity = $this->accountEntityRepository->update($destination->getNumber(), $destination->getName(), $destination->getMoney());

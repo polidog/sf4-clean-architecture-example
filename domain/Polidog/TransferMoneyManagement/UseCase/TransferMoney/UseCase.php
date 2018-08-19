@@ -31,7 +31,8 @@ class UseCase implements TransferMoney
     {
         $source = $this->accountRepository->findAccount($input->getSourceNumber());
         $destination = $this->accountRepository->findAccount($input->getDestinationNumber());
-        $this->accountRepository->transfer($source, $destination, $input->getMoney());
+        $history = $source->transfer($destination, $input->getMoney());
+        $this->accountRepository->transferSave($source, $destination, $history);
 
         $presenter->setOutputData(new Output($source, $destination, $input->getMoney()));
     }

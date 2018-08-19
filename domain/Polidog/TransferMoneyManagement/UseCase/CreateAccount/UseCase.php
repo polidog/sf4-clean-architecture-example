@@ -2,8 +2,8 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\CreateAccount;
 
-use App\Repository\AccountRepository;
-use Polidog\TransferMoneyManagement\Model\Factory\AccountFactory;
+use App\Domain\TransferMoneyManagement\AccountRepository;
+use Polidog\TransferMoneyManagement\Model\AccountFactory;
 
 class UseCase implements CreateAccount
 {

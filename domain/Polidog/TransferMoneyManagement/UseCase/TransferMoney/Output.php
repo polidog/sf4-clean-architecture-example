@@ -2,7 +2,7 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
-use Polidog\TransferMoneyManagement\Model\Entity\Account;
+use Polidog\TransferMoneyManagement\Model\Account;
 
 /**
  * Output Data

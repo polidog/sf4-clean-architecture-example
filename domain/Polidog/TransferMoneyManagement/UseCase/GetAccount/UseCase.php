@@ -3,7 +3,7 @@
 namespace Polidog\TransferMoneyManagement\UseCase\GetAccount;
 
 
-use App\Repository\AccountRepository;
+use App\Domain\TransferMoneyManagement\AccountRepository;
 
 class UseCase implements GetAccount
 {

@@ -11,8 +11,7 @@ services:
   # this creates a service per class whose id is the fully-qualified class name
   Polidog\TransferMoneyManagement\:
     resource: '../../domain/Polidog/TransferMoneyManagement/*'
-    exclude: '../../domain/Polidog/TransferMoneyManagement/{Data, Model/Entity,Presenter, UseCase/*/Input.php, UseCase/*/Output.php}'
+    exclude: '../../domain/Polidog/TransferMoneyManagement/{Data, Model/*, Presenter, UseCase/*/Input.php, UseCase/*/Output.php}'
 
 
-  Polidog\TransferMoneyManagement\Model\Repository\AccountRepository: '@App\Repository\AccountRepository'
-  Polidog\TransferMoneyManagement\Model\Repository\HistoryRepository: '@App\Repository\HistoryRepository'
+  Polidog\TransferMoneyManagement\Model\AccountRepository: '@App\Domain\TransferMoneyManagement\AccountRepository'

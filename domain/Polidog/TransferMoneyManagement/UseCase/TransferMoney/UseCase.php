@@ -3,8 +3,7 @@
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
-use Polidog\TransferMoneyManagement\Model\Repository\AccountRepository;
-use Polidog\TransferMoneyManagement\Model\Repository\HistoryRepository;
+use Polidog\TransferMoneyManagement\Model\AccountRepository;
 
 /**
  * UseCase Interactor
@@ -17,19 +16,12 @@ class UseCase implements TransferMoney
     private $accountRepository;
 
     /**
-     * @var HistoryRepository
-     */
-    private $historyRepository;
-
-    /**
      * UseCase constructor.
      * @param AccountRepository $accountRepository
-     * @param HistoryRepository $historyRepository
      */
-    public function __construct(AccountRepository $accountRepository, HistoryRepository $historyRepository)
+    public function __construct(AccountRepository $accountRepository)
     {
         $this->accountRepository = $accountRepository;
-        $this->historyRepository = $historyRepository;
     }
 
     /**
@@ -39,11 +31,8 @@ class UseCase implements TransferMoney
     {
         $source = $this->accountRepository->findAccount($input->getSourceNumber());
         $destination = $this->accountRepository->findAccount($input->getDestinationNumber());
-        $history = $source->transfer($destination, $input->getMoney());
+        $this->accountRepository->transfer($source, $destination, $input->getMoney());
 
-        $this->accountRepository->update($source);
-        $this->accountRepository->update($destination);
-        $this->historyRepository->add($history);
         $presenter->setOutputData(new Output($source, $destination, $input->getMoney()));
     }
 

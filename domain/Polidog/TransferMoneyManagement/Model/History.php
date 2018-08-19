@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\Model\Entity;
+namespace Polidog\TransferMoneyManagement\Model;
+
+use Polidog\TransferMoneyManagement\Model\Account;
 
 class History
 {

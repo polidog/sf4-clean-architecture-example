@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\Model\Factory;
+namespace Polidog\TransferMoneyManagement\Model;
 
 
-use Polidog\TransferMoneyManagement\Model\Entity\Account;
+use Polidog\TransferMoneyManagement\Model\Account;
 
 class AccountFactory
 {

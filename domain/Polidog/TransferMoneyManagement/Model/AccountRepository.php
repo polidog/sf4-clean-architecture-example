@@ -1,9 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\Model\Repository;
+namespace Polidog\TransferMoneyManagement\Model;
 
 
-use Polidog\TransferMoneyManagement\Model\Entity\Account;
 
 interface AccountRepository
 {
@@ -11,7 +10,7 @@ interface AccountRepository
 
     public function create(Account $account);
 
-    public function update(Account $account);
-
     public function delete(Account $account);
+
+    public function transfer(Account $source, Account $destination, int $money);
 }

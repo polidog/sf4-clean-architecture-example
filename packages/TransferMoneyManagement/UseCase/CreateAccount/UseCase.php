@@ -2,13 +2,13 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\CreateAccount;
 
-use App\Domain\TransferMoneyManagement\AccountRepository;
+use App\DataAccess\AccountDataAccess;
 use Polidog\TransferMoneyManagement\Model\AccountFactory;
 
 class UseCase implements CreateAccount
 {
     /**
-     * @var AccountRepository
+     * @var AccountDataAccess
      */
     private $repository;
 
@@ -18,21 +18,32 @@ class UseCase implements CreateAccount
     private $factory;
 
     /**
-     * UseCase constructor.
-     * @param AccountRepository $repository
-     * @param AccountFactory $factory
+     * @var Presenter
      */
-    public function __construct(AccountRepository $repository, AccountFactory $factory)
+    private $presenter;
+
+    /**
+     * UseCase constructor.
+     * @param AccountDataAccess $repository
+     * @param AccountFactory $factory
+     * @param Presenter $presenter
+     */
+    public function __construct(AccountDataAccess $repository, AccountFactory $factory, Presenter $presenter)
     {
         $this->repository = $repository;
         $this->factory = $factory;
+        $this->presenter = $presenter;
     }
 
-    public function execute(string $name, Presenter $presenter): void
+    /**
+     * @param Request $request
+     * @throws \Exception
+     */
+    public function handle(Request $request): void
     {
-        $account = $this->factory->create($name);
+        $account = $this->factory->create($request->name());
         $this->repository->create($account);
-        $presenter->setAccount((array)$account);
+        $this->presenter->setAccount(new Response($account->getNumber(), $account->getName(), $account->getMoney()));
     }
 
 }

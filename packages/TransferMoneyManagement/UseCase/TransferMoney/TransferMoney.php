@@ -4,12 +4,12 @@ namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Input;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Request;
 
 /**
  * Input Boundary
  */
 interface TransferMoney
 {
-    public function execute(Input $input, Presenter $presenter): void;
+    public function execute(Request $request): void;
 }

@@ -5,5 +5,5 @@ namespace Polidog\TransferMoneyManagement\UseCase\GetAccount;
 
 interface GetAccount
 {
-    public function execute(string $number, Presenter $presenter): void;
+    public function execute(Request $request): void;
 }

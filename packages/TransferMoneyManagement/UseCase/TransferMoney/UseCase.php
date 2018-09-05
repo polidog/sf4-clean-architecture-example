@@ -3,7 +3,7 @@
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
 
-use Polidog\TransferMoneyManagement\Model\AccountRepository;
+use Polidog\TransferMoneyManagement\DataAccess\AccountDataAccess;
 
 /**
  * UseCase Interactor
@@ -11,30 +11,37 @@ use Polidog\TransferMoneyManagement\Model\AccountRepository;
 class UseCase implements TransferMoney
 {
     /**
-     * @var AccountRepository
+     * @var AccountDataAccess
      */
-    private $accountRepository;
+    private $accountDataAccess;
+
+    /**
+     * @var Presenter
+     */
+    private $presenter;
 
     /**
      * UseCase constructor.
-     * @param AccountRepository $accountRepository
+     * @param AccountDataAccess $accountDataAccess
+     * @param Presenter $presenter
      */
-    public function __construct(AccountRepository $accountRepository)
+    public function __construct(AccountDataAccess $accountDataAccess, Presenter $presenter)
     {
-        $this->accountRepository = $accountRepository;
+        $this->accountDataAccess = $accountDataAccess;
+        $this->presenter = $presenter;
     }
 
     /**
      * @throws \Exception
      */
-    public function execute(Input $input, Presenter $presenter): void
+    public function execute(Request $request): void
     {
-        $source = $this->accountRepository->findAccount($input->getSourceNumber());
-        $destination = $this->accountRepository->findAccount($input->getDestinationNumber());
-        $history = $source->transfer($destination, $input->getMoney());
-        $this->accountRepository->transferSave($source, $destination, $history);
+        $source = $this->accountDataAccess->findAccount($request->getSourceNumber());
+        $destination = $this->accountDataAccess->findAccount($request->getDestinationNumber());
+        $history = $source->transfer($destination, $request->getMoney());
+        $this->accountDataAccess->transferSave($source, $destination, $history);
 
-        $presenter->setOutputData(new Output($source, $destination, $input->getMoney()));
+        $this->presenter->setOutputData(new Response($source, $destination, $request->getMoney()));
     }
 
 }

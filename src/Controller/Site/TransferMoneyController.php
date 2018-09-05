@@ -3,13 +3,15 @@
 namespace App\Controller\Site;
 
 
-use App\Form\Type\TransferMoneyInputType;
+use App\Form\Type\TransferMoneyRequestType;
 use App\Presenter\TransferMoneyPresenter;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Request as UseCaseRequest;
+
 
 /**
  * @Route("/transfer-money")
@@ -44,7 +46,7 @@ class TransferMoneyController
      */
     public function form()
     {
-        $form = $this->formFactory->create(TransferMoneyInputType::class);
+        $form = $this->formFactory->create(TransferMoneyRequestType::class);
         return [
             'form' => $form->createView(),
         ];
@@ -59,15 +61,11 @@ class TransferMoneyController
      */
     public function run(Request $request)
     {
-        $form = $this->formFactory->create(TransferMoneyInputType::class);
+        $form = $this->formFactory->create(TransferMoneyRequestType::class);
         $form->handleRequest($request);
-        if ($form->isValid()) {
-            $presenter = new TransferMoneyPresenter();
-            $this->useCase->execute($form->getData(), $presenter);
-            return [
-                'presenter' => $presenter,
-            ];
-        }
 
+        if ($form->isValid()) {
+            $this->useCase->execute($form->getData());
+        }
     }
 }

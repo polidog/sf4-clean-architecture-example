@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <h2>送金手続き</h2>
-        <p class="text-center">「{{ presenter.source.number }}」から「{{ presenter.destination.number }}」へ{{ presenter.money }}円の送金が完了しました</p>
+        <p class="text-center">「{{ source.number }}」から「{{ destination.number }}」へ{{ money }}円の送金が完了しました</p>
         <p class="text-center"><a href="{{ path('app_site_transfermoney_form') }}" class="btn btn-dark">戻る</a>
         <hr>
         <h3>残金</h3>
@@ -12,17 +12,17 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>口座番号</th>
-                        <td>{{ presenter.source.number }}</td>
+                        <td>{{ source.number }}</td>
                     </tr>
                     <tr>
                         <th>名前</th>
-                        <td>{{ presenter.source.name }}</td>
+                        <td>{{ source.name }}</td>
                     </tr>
 
 
                     <tr>
                         <th>金額</th>
-                        <td>{{ presenter.source.money|number_format }}円</td>
+                        <td>{{ source.money|number_format }}円</td>
                     </tr>
                 </table>
             </div>
@@ -30,17 +30,17 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>口座番号</th>
-                        <td>{{ presenter.destination.number }}</td>
+                        <td>{{ destination.number }}</td>
                     </tr>
                     <tr>
                         <th>名前</th>
-                        <td>{{ presenter.destination.name }}</td>
+                        <td>{{ destination.name }}</td>
                     </tr>
 
 
                     <tr>
                         <th>金額</th>
-                        <td>{{ presenter.destination.money|number_format }}円</td>
+                        <td>{{ destination.money|number_format }}円</td>
                     </tr>
                 </table>
             </div>

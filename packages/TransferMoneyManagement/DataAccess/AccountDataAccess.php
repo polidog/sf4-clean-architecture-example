@@ -1,10 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Polidog\TransferMoneyManagement\Model;
+namespace Polidog\TransferMoneyManagement\DataAccess;
 
 
 
-interface AccountRepository
+use Polidog\TransferMoneyManagement\Model\Account;
+use Polidog\TransferMoneyManagement\Model\History;
+
+interface AccountDataAccess
 {
     public function findAccount(string $number): Account;
 

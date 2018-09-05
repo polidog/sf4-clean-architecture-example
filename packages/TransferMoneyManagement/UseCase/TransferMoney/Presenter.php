@@ -7,5 +7,5 @@ namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
  */
 interface Presenter
 {
-    public function setOutputData(Output $output);
+    public function setOutputData(Response $response);
 }

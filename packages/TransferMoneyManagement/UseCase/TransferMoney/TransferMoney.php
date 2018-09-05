@@ -11,5 +11,5 @@ use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Request;
  */
 interface TransferMoney
 {
-    public function execute(Request $request): void;
+    public function handle(Request $request): void;
 }

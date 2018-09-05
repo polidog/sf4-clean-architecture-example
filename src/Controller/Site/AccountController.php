@@ -31,7 +31,7 @@ class AccountController
 
     public function __invoke(Request $request) : array
     {
-        $this->useCase->execute($request);
+        $this->useCase->handle($request);
         return [];
     }
 }

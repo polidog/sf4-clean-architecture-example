@@ -28,7 +28,7 @@ class UseCase implements GetAccount
         $this->presenter = $presenter;
     }
 
-    public function execute(Request $request): void
+    public function handle(Request $request): void
     {
         $account = $this->repository->findAccount($request->number());
         $this->presenter->setAccount(new Response($account->getNumber(), $account->getName(), $account->getMoney()));

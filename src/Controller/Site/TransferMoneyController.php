@@ -65,7 +65,7 @@ class TransferMoneyController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->useCase->execute($form->getData());
+            $this->useCase->handle($form->getData());
         }
     }
 }

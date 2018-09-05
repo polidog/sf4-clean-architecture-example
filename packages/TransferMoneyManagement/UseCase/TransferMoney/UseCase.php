@@ -34,7 +34,7 @@ class UseCase implements TransferMoney
     /**
      * @throws \Exception
      */
-    public function execute(Request $request): void
+    public function handle(Request $request): void
     {
         $source = $this->accountDataAccess->findAccount($request->getSourceNumber());
         $destination = $this->accountDataAccess->findAccount($request->getDestinationNumber());

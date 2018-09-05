@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace App\Domain\TransferMoneyManagement;
+namespace App\DataAccess;
 
 
 use App\Repository\AccountEntityRepository;
 use App\Repository\HistoryEntityRepository;
 use App\Entity\Account;
 use Polidog\TransferMoneyManagement\Model\AccountFactory;
-use Polidog\TransferMoneyManagement\Model\AccountRepository as Repository;
+use Polidog\TransferMoneyManagement\DataAccess\AccountDataAccess as IAccountDataAccess;
 use Polidog\TransferMoneyManagement\Model\Account as EntityAccount;
 use Polidog\TransferMoneyManagement\Model\History;
 
-class AccountRepository implements Repository
+class AccountDataAccess implements IAccountDataAccess
 {
     /**
      * @var AccountEntityRepository
@@ -53,7 +53,10 @@ class AccountRepository implements Repository
 
     public function create(EntityAccount $account): void
     {
-        // TODO: Implement create() method.
+        $entity = new Account($account->getName(), $account->getNumber());
+        $entity->setMoney($account->getMoney());
+
+        $this->accountEntityRepository->add($entity);
     }
 
     public function delete(EntityAccount $account): void

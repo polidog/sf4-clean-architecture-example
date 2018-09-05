@@ -5,6 +5,7 @@ namespace App\Controller\Site;
 
 use App\Presenter\GetAccountPresenter;
 use Polidog\TransferMoneyManagement\UseCase\GetAccount\GetAccount;
+use Polidog\TransferMoneyManagement\UseCase\GetAccount\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -28,13 +29,9 @@ class AccountController
         $this->useCase = $useCase;
     }
 
-    public function __invoke(string $number) : array
+    public function __invoke(Request $request) : array
     {
-        $presenter = new GetAccountPresenter();
-        $this->useCase->execute($number, $presenter);
-
-        return [
-            'presenter' => $presenter,
-        ];
+        $this->useCase->execute($request);
+        return [];
     }
 }

@@ -4,33 +4,29 @@ namespace App\Presenter;
 
 
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Output;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Response;
 
 class TransferMoneyPresenter implements Presenter
 {
     /**
-     * @var Output
+     * @var \Twig_Environment
      */
-    private $output;
+    private $view;
 
-    public function setOutputData(Output $output): void
+    /**
+     * TransferMoneyPresenter constructor.
+     * @param \Twig_Environment $view
+     */
+    public function __construct(\Twig_Environment $view)
     {
-        $this->output = $output;
+        $this->view = $view;
     }
 
-    public function getSource() : array
+    public function setOutputData(Response $response): void
     {
-        return $this->output->getSource();
-    }
-
-    public function getDestination() : array
-    {
-        return $this->output->getDestination();
-    }
-
-    public function getMoney(): int
-    {
-        return $this->output->getMoney();
+        $this->view->addGlobal('money', $response->getMoney());
+        $this->view->addGlobal('destination', $response->getDestination());
+        $this->view->addGlobal('source', $response->getSource());
     }
 
 }

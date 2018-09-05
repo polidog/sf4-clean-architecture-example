@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Input;
+use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Request;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TransferMoneyInputType extends AbstractType
+class TransferMoneyRequestType extends AbstractType
 {
     private const SOURCE_NUMBER = 'sourceNumber';
     private const DESTINATION_NUMBER = 'destinationNumber';
@@ -31,7 +31,7 @@ class TransferMoneyInputType extends AbstractType
             ])
         ;
 
-        $builder->addModelTransformer(new CallbackTransformer(function(Input $data = null){
+        $builder->addModelTransformer(new CallbackTransformer(function(Request $data = null){
             if ($data === null) {
                 return [];
             }
@@ -42,7 +42,7 @@ class TransferMoneyInputType extends AbstractType
                 self::MONEY => $data->getMoney(),
             ];
         }, function (array $data){
-            return new Input($data[self::SOURCE_NUMBER], $data[self::DESTINATION_NUMBER], $data[self::MONEY]);
+            return new Request($data[self::SOURCE_NUMBER], $data[self::DESTINATION_NUMBER], $data[self::MONEY]);
         }));
 
     }

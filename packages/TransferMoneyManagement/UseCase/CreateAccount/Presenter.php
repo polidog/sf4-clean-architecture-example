@@ -5,5 +5,5 @@ namespace Polidog\TransferMoneyManagement\UseCase\CreateAccount;
 
 interface Presenter
 {
-    public function setAccount(array $accountData);
+    public function setAccount(Response $response);
 }

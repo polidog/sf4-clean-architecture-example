@@ -7,7 +7,7 @@ use Polidog\TransferMoneyManagement\Model\Account;
 /**
  * Output Data
  */
-class Output
+class Response
 {
     /**
      * @var Account

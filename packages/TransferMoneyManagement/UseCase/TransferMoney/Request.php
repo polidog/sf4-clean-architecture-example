@@ -5,7 +5,7 @@ namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 /**
  * Input Data
  */
-class Input
+class Request
 {
     /**
      * @var string

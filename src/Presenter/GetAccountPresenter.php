@@ -4,19 +4,31 @@ namespace App\Presenter;
 
 
 use Polidog\TransferMoneyManagement\UseCase\GetAccount\Presenter;
+use Polidog\TransferMoneyManagement\UseCase\GetAccount\Response;
 
 class GetAccountPresenter implements Presenter
 {
-    private $data;
+    /**
+     * @var \Twig_Environment
+     */
+    private $view;
 
-    public function setAccount(array $accountData): void
+    /**
+     * GetAccountPresenter constructor.
+     * @param \Twig_Environment $view
+     */
+    public function __construct(\Twig_Environment $view)
     {
-        $this->data = $accountData;
+        $this->view = $view;
     }
 
-    public function getAccount()
+    public function setAccount(Response $response): void
     {
-        return $this->data;
+        $this->view->addGlobal('account', [
+            'number' => $response->getNumber(),
+            'name' => $response->getName(),
+            'money' => $response->getMoney(),
+        ]);
     }
 
 }

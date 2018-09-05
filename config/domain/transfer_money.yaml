@@ -10,8 +10,14 @@ services:
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
   Polidog\TransferMoneyManagement\:
-    resource: '../../domain/Polidog/TransferMoneyManagement/*'
-    exclude: '../../domain/Polidog/TransferMoneyManagement/{Data, Model/*, Presenter, UseCase/*/Input.php, UseCase/*/Output.php}'
+    resource: '../../packages/TransferMoneyManagement/*'
+    exclude: '../../packages/TransferMoneyManagement/{Model/*, Presenter, UseCase/*/Request.php, UseCase/*/Response.php}'
 
 
-  Polidog\TransferMoneyManagement\Model\AccountRepository: '@App\Domain\TransferMoneyManagement\AccountRepository'
+  Polidog\TransferMoneyManagement\Model\AccountFactory:
+      class: 'Polidog\TransferMoneyManagement\Model\AccountFactory'
+
+  Polidog\TransferMoneyManagement\DataAccess\AccountDataAccess: '@App\DataAccess\AccountDataAccess'
+
+  Polidog\TransferMoneyManagement\UseCase\GetAccount\Presenter: '@App\Presenter\GetAccountPresenter'
+  Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter: '@App\Presenter\TransferMoneyPresenter'

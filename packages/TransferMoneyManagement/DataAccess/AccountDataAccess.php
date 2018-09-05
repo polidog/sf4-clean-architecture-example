@@ -2,8 +2,6 @@
 
 namespace Polidog\TransferMoneyManagement\DataAccess;
 
-
-
 use Polidog\TransferMoneyManagement\Model\Account;
 use Polidog\TransferMoneyManagement\Model\History;
 

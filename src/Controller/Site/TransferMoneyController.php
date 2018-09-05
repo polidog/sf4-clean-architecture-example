@@ -4,13 +4,11 @@ namespace App\Controller\Site;
 
 
 use App\Form\Type\TransferMoneyRequestType;
-use App\Presenter\TransferMoneyPresenter;
 use Polidog\TransferMoneyManagement\UseCase\TransferMoney\TransferMoney;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Request as UseCaseRequest;
 
 
 /**

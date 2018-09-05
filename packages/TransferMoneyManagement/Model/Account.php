@@ -2,8 +2,6 @@
 
 namespace Polidog\TransferMoneyManagement\Model;
 
-use Polidog\TransferMoneyManagement\Model\History;
-
 class Account
 {
     /**

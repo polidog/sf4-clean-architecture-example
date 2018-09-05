@@ -3,7 +3,6 @@
 namespace App\Controller\Site;
 
 
-use App\Presenter\GetAccountPresenter;
 use Polidog\TransferMoneyManagement\UseCase\GetAccount\GetAccount;
 use Polidog\TransferMoneyManagement\UseCase\GetAccount\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

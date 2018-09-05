@@ -2,10 +2,6 @@
 
 namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
 
-
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Presenter;
-use Polidog\TransferMoneyManagement\UseCase\TransferMoney\Request;
-
 /**
  * Input Boundary
  */

@@ -7,5 +7,5 @@ namespace Polidog\TransferMoneyManagement\UseCase\TransferMoney;
  */
 interface TransferMoney
 {
-    public function handle(Request $request): void;
+    public function handle(Request $request): Response;
 }

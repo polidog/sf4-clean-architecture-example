@@ -30,7 +30,9 @@ class AccountController
 
     public function __invoke(Request $request) : array
     {
-        $this->useCase->handle($request);
-        return [];
+        $response = $this->useCase->handle($request);
+        return [
+            'account' => $response
+        ];
     }
 }

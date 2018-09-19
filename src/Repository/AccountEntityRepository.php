@@ -3,42 +3,53 @@
 namespace App\Repository;
 
 
+use App\Entity\Account as DoctrineAccount;
 use App\Entity\Account;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Polidog\TransferMoneyManagement\Model\AccountNumber;
+use Polidog\TransferMoneyManagement\Model\AccountRepository;
 
-class AccountEntityRepository extends ServiceEntityRepository
+use Polidog\TransferMoneyManagement\Model\Account as DomainAccount;
+use Polidog\TransferMoneyManagement\Model\Money;
+
+
+class AccountEntityRepository extends ServiceEntityRepository implements AccountRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Account::class);
+        parent::__construct($registry, DoctrineAccount::class);
     }
 
-    public function add(Account $account): void
+    /**
+     * @param AccountNumber $number
+     * @return DomainAccount
+     * @throws \Exception
+     */
+    public function findAccount(AccountNumber $number): DomainAccount
     {
-        $this->_em->persist($account);
-        $this->_em->flush($account);
-    }
-
-    public function findNumber(string $number, bool $lock) : Account
-    {
-        $account = $this->findOneBy(['number' => $number]);
-        // TODO Lock
-        if (!$account instanceof Account ) {
-            // TODO Custom Exception
-            throw new \InvalidArgumentException(sprintf('number %s is not found', $number));
+        /** @var DoctrineAccount $entity */
+        $entity = $this->findOneBy(['number' => (string)$number]);
+        if (!$entity instanceof DoctrineAccount) {
+            throw new \Exception('アカウントが見つかりません...');
         }
-        return $account;
+        return new DomainAccount(new AccountNumber($entity->getNumber()), new Money($entity->getBalance()), $entity->getName());
     }
 
-    public function update(string $number, string $name, int $money) : Account
+    /**
+     * @param DomainAccount $account
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(DomainAccount $account): void
     {
-        $account = $this->findNumber($number, true);
-        $account->setName($name);
-        $account->setMoney($money);
-        $this->_em->flush($account);
-        return $account;
+        $entity = $this->findOneBy(['number' => (string)$account->getNumber()]);
+        if (false === $entity instanceof DoctrineAccount) {
+            $entity = new DoctrineAccount($account->getName(), (string)$account->getNumber());
+            $this->_em->persist($entity);
+        }
+        $entity->setBalance($account->getBalance()->getValue());
+        $this->_em->flush($entity);
     }
-
 
 }

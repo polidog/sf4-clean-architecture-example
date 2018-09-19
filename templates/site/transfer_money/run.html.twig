@@ -19,10 +19,9 @@
                         <td>{{ source.name }}</td>
                     </tr>
 
-
                     <tr>
                         <th>金額</th>
-                        <td>{{ source.money|number_format }}円</td>
+                        <td>{{ source.balance|number_format }}円</td>
                     </tr>
                 </table>
             </div>
@@ -40,7 +39,7 @@
 
                     <tr>
                         <th>金額</th>
-                        <td>{{ destination.money|number_format }}円</td>
+                        <td>{{ destination.balance|number_format }}円</td>
                     </tr>
                 </table>
             </div>

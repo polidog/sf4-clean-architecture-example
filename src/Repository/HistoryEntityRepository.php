@@ -3,20 +3,42 @@
 namespace App\Repository;
 
 
-use App\Entity\History;
+use App\Entity\Account;
+use App\Entity\History as DoctrineHistory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Polidog\TransferMoneyManagement\Model\HistoryRepository;
+use Polidog\TransferMoneyManagement\Model\History as DomainHistory;
 
-class HistoryEntityRepository extends ServiceEntityRepository
+class HistoryEntityRepository extends ServiceEntityRepository implements HistoryRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var AccountEntityRepository
+     */
+    private $accountRepository;
+
+    public function __construct(ManagerRegistry $registry, AccountEntityRepository $accountRepository)
     {
-        parent::__construct($registry, History::class);
+        $this->accountRepository = $accountRepository;
+        parent::__construct($registry, DoctrineHistory::class);
     }
 
-    public function add(History $history): void
+    /**
+     * @param DomainHistory $history
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(DomainHistory $history): void
     {
-        $this->_em->persist($history);
-        $this->_em->flush($history);
+        /** @var Account $source */
+        $source = $this->accountRepository->findOneBy(['number' => (string)$history->getSource()->getNumber()]);
+        /** @var Account $destination */
+        $destination = $this->accountRepository->findOneBy(['number' => (string)$history->getDestination()->getNumber()]);
+
+        $entity = new DoctrineHistory($source, $destination, $history->getAmount()->getValue(), $history->getCreatedAt());
+        $this->_em->persist($entity);
+        $this->_em->flush();
     }
+
 }

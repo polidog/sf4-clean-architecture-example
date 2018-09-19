@@ -34,6 +34,13 @@ class History
     private $destination;
 
     /**
+     * @ORM\Column(type="integer")
+     *
+     * @var int
+     */
+    private $amount;
+
+    /**
      * @ORM\Column(type="date_immutable")
      *
      * @var \DateTimeImmutable
@@ -46,11 +53,12 @@ class History
      * @param Account $destination
      * @param \DateTimeImmutable $createdAt
      */
-    public function __construct(Account $source, Account $destination, \DateTimeImmutable $createdAt)
+    public function __construct(Account $source, Account $destination, int $amount, \DateTimeImmutable $createdAt)
     {
         $this->source = $source;
         $this->destination = $destination;
         $this->createdAt = $createdAt;
+        $this->amount = $amount;
     }
 
     /**

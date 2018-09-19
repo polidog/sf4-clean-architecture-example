@@ -13,11 +13,11 @@ class AccountRequestResolver implements ArgumentValueResolverInterface
 {
     public function supports(Request $request, ArgumentMetadata $argument)
     {
-        return $argument->getType() === AccountRequest::class && $request->request->get('number') !== null;
+        return $argument->getType() === AccountRequest::class && $request->get('number') !== null;
     }
 
     public function resolve(Request $request, ArgumentMetadata $argument)
     {
-        yield new AccountRequest($request->request->get('number'));
+        yield new AccountRequest($request->get('number'));
     }
 }

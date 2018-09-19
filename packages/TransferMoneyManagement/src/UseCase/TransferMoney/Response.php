@@ -10,49 +10,103 @@ use Polidog\TransferMoneyManagement\Model\Account;
 class Response
 {
     /**
-     * @var Account
+     * @var array
      */
     private $source;
 
     /**
-     * @var Account
+     * @var array
      */
     private $destination;
 
     /**
-     * @var integer
+     * @var int
      */
     private $money;
 
-    public function __construct(Account $source, Account $destination, int $money)
+    /**
+     * Response constructor.
+     * @param array $source
+     * @param array $destination
+     * @param int $money
+     */
+    public function __construct(array $source, array $destination, int $money)
     {
         $this->source = $source;
         $this->destination = $destination;
         $this->money = $money;
     }
 
+    /**
+     * @return array
+     */
     public function getSource(): array
     {
-        return $this->exportAccount($this->source);
+        return $this->source;
     }
 
+    /**
+     * @return array
+     */
     public function getDestination(): array
     {
-        return $this->exportAccount($this->destination);
+        return $this->destination;
     }
 
+    /**
+     * @return int
+     */
     public function getMoney(): int
     {
         return $this->money;
     }
 
-    private function exportAccount(Account $account)
-    {
-        return [
-            'number' => $account->getNumber(),
-            'name' => $account->getName(),
-            'money' => $account->getMoney(),
-        ];
-    }
+
+
+//    /**
+//     * @var Account
+//     */
+//    private $source;
+//
+//    /**
+//     * @var Account
+//     */
+//    private $destination;
+//
+//    /**
+//     * @var integer
+//     */
+//    private $money;
+//
+//    public function __construct(Account $source, Account $destination, int $money)
+//    {
+//        $this->source = $source;
+//        $this->destination = $destination;
+//        $this->money = $money;
+//    }
+//
+//    public function getSource(): array
+//    {
+//        return $this->exportAccount($this->source);
+//    }
+//
+//    public function getDestination(): array
+//    {
+//        return $this->exportAccount($this->destination);
+//    }
+//
+//    public function getMoney(): int
+//    {
+//        return $this->money;
+//    }
+//
+//    private function exportAccount(Account $account)
+//    {
+//        return [
+//            'number' => $account->getNumber(),
+//            'name' => $account->getName(),
+//            'money' => $account->getMoney(),
+//        ];
+//    }
 
 }

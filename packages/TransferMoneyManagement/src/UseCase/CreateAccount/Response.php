@@ -52,7 +52,7 @@ class Response
     /**
      * @return integer
      */
-    public function getMoney(): string
+    public function getMoney(): int
     {
         return $this->money;
     }

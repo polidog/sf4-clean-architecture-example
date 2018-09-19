@@ -39,7 +39,7 @@ class Account
      *
      * @ORM\Column(type="integer")
      */
-    private $money;
+    private $balance;
 
     /**
      * Account constructor.
@@ -89,17 +89,17 @@ class Account
     /**
      * @return int
      */
-    public function getMoney(): int
+    public function getBalance(): int
     {
-        return $this->money;
+        return $this->balance;
     }
 
     /**
-     * @param int $money
+     * @param int $balance
      */
-    public function setMoney(int $money): void
+    public function setBalance(int $balance): void
     {
-        $this->money = $money;
+        $this->balance = $balance;
     }
 
 

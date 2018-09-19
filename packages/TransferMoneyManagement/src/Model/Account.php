@@ -2,12 +2,20 @@
 
 namespace Polidog\TransferMoneyManagement\Model;
 
+/**
+ * Entity
+ */
 class Account
 {
     /**
-     * @var string
+     * @var AccountNumber
      */
     private $number;
+
+    /**
+     * @var Money
+     */
+    private $balance;
 
     /**
      * @var string
@@ -15,29 +23,32 @@ class Account
     private $name;
 
     /**
-     * @var integer
-     */
-    private $money;
-
-    /**
      * Account constructor.
-     * @param string $number
+     * @param AccountNumber $number
+     * @param Money $money
      * @param string $name
-     * @param int $money
      */
-    public function __construct(string $number, string $name, int $money)
+    public function __construct(AccountNumber $number, Money $money, string $name)
     {
         $this->number = $number;
+        $this->balance = $money;
         $this->name = $name;
-        $this->money = $money;
     }
 
     /**
-     * @return string
+     * @return AccountNumber
      */
-    public function getNumber(): string
+    public function getNumber(): AccountNumber
     {
         return $this->number;
+    }
+
+    /**
+     * @return Money
+     */
+    public function getBalance(): Money
+    {
+        return $this->balance;
     }
 
     /**
@@ -48,32 +59,13 @@ class Account
         return $this->name;
     }
 
-    /**
-     * @return int
-     */
-    public function getMoney(): int
+    public function deposit(Money $money) : void
     {
-        return $this->money;
+        $this->balance = $this->balance->addition($money);
     }
 
-    /**
-     * @throws \Exception
-     */
-    public function transfer(self $source, int $money) : History
+    public function withdraw(Money $money): void
     {
-        $this->withdraw($money);
-        $source->deposit($money);
-        return new History($source, $this, new \DateTimeImmutable());
-    }
-
-    public function deposit(int $money) : void
-    {
-        $this->money += $money;
-    }
-
-    public function withdraw(int $money): void
-    {
-        $this->money -= $money;
-        // TODO: Check money
+        $this->balance = $this->balance->subtraction($money);
     }
 }

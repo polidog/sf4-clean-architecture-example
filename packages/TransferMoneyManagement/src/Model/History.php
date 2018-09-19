@@ -2,6 +2,9 @@
 
 namespace Polidog\TransferMoneyManagement\Model;
 
+/**
+ * Entity
+ */
 class History
 {
     /**
@@ -15,6 +18,11 @@ class History
     private $destination;
 
     /**
+     * @var Money
+     */
+    private $amount;
+
+    /**
      * @var \DateTimeImmutable
      */
     private $createdAt;
@@ -23,12 +31,14 @@ class History
      * History constructor.
      * @param Account $source
      * @param Account $destination
+     * @param Money $money
      * @param \DateTimeImmutable $createdAt
      */
-    public function __construct(Account $source, Account $destination, \DateTimeImmutable $createdAt)
+    public function __construct(Account $source, Account $destination, Money $money, \DateTimeImmutable $createdAt)
     {
         $this->source = $source;
         $this->destination = $destination;
+        $this->amount = $money;
         $this->createdAt = $createdAt;
     }
 
@@ -46,6 +56,14 @@ class History
     public function getDestination(): Account
     {
         return $this->destination;
+    }
+
+    /**
+     * @return Money
+     */
+    public function getAmount(): Money
+    {
+        return $this->amount;
     }
 
     /**

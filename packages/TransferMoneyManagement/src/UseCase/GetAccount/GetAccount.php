@@ -5,5 +5,5 @@ namespace Polidog\TransferMoneyManagement\UseCase\GetAccount;
 
 interface GetAccount
 {
-    public function handle(Request $request): void;
+    public function handle(Request $request): Response;
 }

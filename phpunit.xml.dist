@@ -20,12 +20,14 @@
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests/</directory>
+            <directory>packages/TransferMoneyManagement/tests/</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
             <directory>./src/</directory>
+            <directory>./packages/TransferMoneyManagement/src/</directory>
         </whitelist>
     </filter>
 

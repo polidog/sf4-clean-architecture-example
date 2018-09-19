@@ -9,9 +9,9 @@ interface AccountDataAccess
 {
     public function findAccount(string $number): Account;
 
-    public function create(Account $account);
+    public function create(Account $account) : void;
 
-    public function delete(Account $account);
+    public function delete(Account $account) : void;
 
-    public function transferSave(Account $source, Account $destination, History $history);
+    public function transferSave(Account $source, Account $destination, History $history) : void;
 }
